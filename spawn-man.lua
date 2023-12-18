@@ -1,5 +1,6 @@
 -- spawn-man.lua
 
+local tick = require("tick")
 local state = require('state')
 local smh = require('spawn-man-helpers')
 
@@ -8,27 +9,26 @@ local MAX_POWERUP_COUNT = 4
 local SPAWN_INTERVAL_OPP = 0.4
 local SPAWN_INTERVAL_POWERUP = 10
 
-local last_time_spawn_opp = 0
-local last_time_spawn_powerup = 0
-
-local man_opp = function(entities, current_time)
-  if current_time - last_time_spawn_opp >= SPAWN_INTERVAL_OPP then
-    last_time_spawn_opp = current_time
-    if state.opp_count < MAX_OPP_COUNT then
-      smh.spawn_opp(entities)
-    end
-  end
+local man_opp = function(entities)
+  tick.recur(
+    function()
+      if state.opp_count < MAX_OPP_COUNT then
+        smh.spawn_opp(entities)
+      end
+    end,
+    SPAWN_INTERVAL_OPP
+  )
 end
 
-local man_powerup = function(entities, current_time)
-  if current_time - last_time_spawn_powerup 
-    >= SPAWN_INTERVAL_POWERUP
-  then
-    last_time_spawn_powerup = current_time
-    if state.powerup_count < MAX_POWERUP_COUNT then
-      smh.spawn_powerup(entities)
-    end
-  end
+local man_powerup = function(entities)
+  tick.recur(
+    function()
+      if state.powerup_count < MAX_POWERUP_COUNT then
+        smh.spawn_powerup(entities)
+      end
+    end,
+    SPAWN_INTERVAL_POWERUP
+  )
 end
 
 local man_dead = function(entities)
@@ -37,10 +37,8 @@ local man_dead = function(entities)
   end
 end
 
-return function(entities)
-  local current_time = love.timer.getTime()
-  
-  man_opp(entities, current_time)
-  man_powerup(entities, current_time)
-  man_dead(entities)
-end
+return {
+  opp = man_opp,
+  powerup = man_powerup,
+  dead = man_dead
+}

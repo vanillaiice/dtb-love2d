@@ -1,5 +1,6 @@
 -- main.lua
 
+local tick = require("tick")
 local entities = require('entities')
 local input = require('input')
 local world = require('world')
@@ -8,6 +9,11 @@ local colors = require('colors')
 local spawn_man = require('spawn-man')
 
 love.graphics.setBackgroundColor(colors['black-medium'])
+
+love.load = function()
+	spawn_man.opp(entities)
+	spawn_man.powerup(entities)
+end
 
 love.draw = function()
 	for _, e in ipairs(entities) do
@@ -20,7 +26,8 @@ love.update = function(dt)
 		for idx, e in ipairs(entities) do
 			if e.update then e:update(dt) end
 		end
-		spawn_man(entities)
+		spawn_man.dead(entities)
+		tick.update(dt)
 		world:update(dt)
 	end
 end
