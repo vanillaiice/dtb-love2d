@@ -32,9 +32,9 @@ local man_powerup = function(entities)
 end
 
 local man_dead = function(entities)
-  for idx, entity in ipairs(entities) do
-    smh.remove_dead(entities, entity, idx)
-  end
+	for idx=#entities, 1, -1 do
+		smh.remove_dead(entities, entities[idx], idx)
+	end
 end
 
 return {
