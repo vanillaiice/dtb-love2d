@@ -8,9 +8,8 @@ local state = require('state')
 local colors = require('colors')
 local spawn_man = require('spawn-man')
 
-love.graphics.setBackgroundColor(colors['black-medium'])
-
 love.load = function()
+	love.graphics.setBackgroundColor(colors['black-medium'])
 	spawn_man.opp(entities)
 	spawn_man.powerup(entities)
 end
