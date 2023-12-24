@@ -3,8 +3,6 @@
 local defaults = require('defaults')
 local boundary = require('entities/boundary')
 local player = require('entities/player')
-local powerup = require('entities/powerup')
-local opp = require('entities/opp')
 local game_over = require('entities/text/game-over')
 local score = require('entities/text/score')
 local health = require('entities/text/health')
@@ -13,7 +11,7 @@ local pause = require('entities/text/pause')
 local entities = {
   -- top
   boundary(
-    defaults.BOUNDARY_POS_X, 
+    defaults.BOUNDARY_POS_X,
     defaults.BOUNDARY_POS_Y,
     defaults.BOUNDARY_W,
     defaults.BOUNDARY_H,
@@ -24,7 +22,7 @@ local entities = {
   boundary(
     defaults.BOUNDARY_POS_X,
     defaults.screen_h - defaults.BOUNDARY_POS_Y,
-    defaults.BOUNDARY_W, 
+    defaults.BOUNDARY_W,
     defaults.BOUNDARY_H,
     0,
     defaults.BOUNDARY_COLOR
@@ -54,13 +52,13 @@ local entities = {
     defaults.PLAYER_RADIUS,
     defaults.PLAYER_COLOR
   ),
-  -- game over
+  -- game over text
   game_over(),
-  -- score
+  -- score text
   score(),
-  -- health
+  -- health text
   health(),
-  -- pause
+  -- pause text
   pause()
 }
 
