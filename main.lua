@@ -22,7 +22,7 @@ end
 
 love.update = function(dt)
 	if not state.paused and not state.game_over then
-		for idx, e in ipairs(entities) do
+		for _, e in ipairs(entities) do
 			if e.update then e:update(dt) end
 		end
 		spawn_man.dead(entities)
