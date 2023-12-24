@@ -8,17 +8,14 @@ return function(pos_x, pos_y, radius, color_palette, impulse_x, impulse_y)
 
   entity.type = 'opp'
   entity.health = 3
-  
   entity.body = love.physics.newBody(world, pos_x, pos_y, "dynamic")
   entity.shape = love.physics.newCircleShape(radius)
   entity.fixture = love.physics.newFixture(entity.body, entity.shape)
-	
   entity.fixture:setRestitution(1)
   entity.fixture:setCategory(1)
   entity.fixture:setMask(2)
-	
 	entity.fixture:setUserData(entity)
-	
+
   entity.draw = function(self)
 		local self_x, self_y = self.body:getWorldCenter()
     love.graphics.setColor(colors[color_palette[entity.health] or color_palette[1]])
@@ -32,6 +29,6 @@ return function(pos_x, pos_y, radius, color_palette, impulse_x, impulse_y)
   end
 
   entity.body:applyLinearImpulse(impulse_x, impulse_y)
-  
+
   return entity
 end
