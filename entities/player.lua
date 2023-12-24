@@ -10,15 +10,11 @@ return function(pos_x, pos_y, radius, color)
   local entity = {}
 
   entity.type = 'player'
-  
   entity.body = love.physics.newBody(world, pos_x, pos_y, "dynamic")
   entity.shape = love.physics.newCircleShape(radius)
   entity.fixture = love.physics.newFixture(entity.body, entity.shape)
-
   entity.fixture:setCategory(3)
-		
 	entity.fixture:setUserData(entity)
-	
   entity.draw = function(self)
 		local self_x, self_y = self.body:getWorldCenter()
     love.graphics.setColor(colors[color])
