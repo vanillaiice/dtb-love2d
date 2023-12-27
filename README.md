@@ -2,7 +2,7 @@
 
 Simple game where you dodge moving balls, made with Lua and Löve2D.
 
-## Installation
+# Installation
 
 You need git and [Löve2D](https://love2d.org/) installed.
 
@@ -14,20 +14,26 @@ $ love .
 $ make
 ```
 
-## Game Controls
+# Controls
 
-`Move Mouse` - Move Ball
+`Move Mouse` - Move Player
 
-`Space` - Pause
+`Space` - Pause Game
 
-`Backspace` - Restart
+`Backspace` - Restart Game
 
-`Esc` - Quit
+`Esc` - Quit Game
 
-## Author
+`Right Click` - Destroy Opps Around
+
+`Left Click` - Repel Opps Around
+
+`Middle Click` - Slow Down Opps
+
+# Author
 
 Vanillaiice
 
-## License
+# License
 
 GPLv3

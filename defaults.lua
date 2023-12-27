@@ -59,6 +59,8 @@ local POWERUP_SPAWN_POS = {
   -- left middle
   {BOUNDARY_H + POWERUP_SPAWN_POS_CLEARANCE, screen_h / 2}
 }
+local POWERUP_TYPES = {"repel", "destroy_around", "slow_motion"}
+local POWERUP_COLORS = {"blue", "red", "yellow"}
   
 return {
   screen_w = screen_w,
@@ -93,5 +95,7 @@ return {
   POWERUP_H = POWERUP_H,
   POWERUP_ANGLE = POWERUP_ANGLE,
   POWERUP_COLOR = POWERUP_COLOR,
-  POWERUP_SPAWN_POS = POWERUP_SPAWN_POS
+  POWERUP_SPAWN_POS = POWERUP_SPAWN_POS,
+  POWERUP_TYPES = POWERUP_TYPES,
+  POWERUP_COLORS = POWERUP_COLORS
 }

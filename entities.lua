@@ -1,16 +1,24 @@
 -- entities.lua
 
-local defaults = require('defaults')
-local boundary = require('entities/boundary')
-local player = require('entities/player')
+local defaults = require("defaults")
+local b = require("entities/boundary")
+local p = require("entities/player")
 local game_over = require('entities/text/game-over')
 local score = require('entities/text/score')
 local health = require('entities/text/health')
 local pause = require('entities/text/pause')
- 
-local entities = {
+local powerup = require('entities/text/powerup')
+
+local player = p(
+	defaults.PLAYER_POS_X,
+	defaults.PLAYER_POS_Y,
+	defaults.PLAYER_RADIUS,
+	defaults.PLAYER_COLOR
+)
+
+local boundary = {
   -- top
-  boundary(
+  b(
     defaults.BOUNDARY_POS_X,
     defaults.BOUNDARY_POS_Y,
     defaults.BOUNDARY_W,
@@ -19,7 +27,7 @@ local entities = {
     defaults.BOUNDARY_COLOR
   ),
   -- bottom
-  boundary(
+  b(
     defaults.BOUNDARY_POS_X,
     defaults.screen_h - defaults.BOUNDARY_POS_Y,
     defaults.BOUNDARY_W,
@@ -28,7 +36,7 @@ local entities = {
     defaults.BOUNDARY_COLOR
   ),
   -- left
-  boundary(
+  b(
     defaults.BOUNDARY_H / 2,
     defaults.screen_h / 2,
     defaults.screen_h - defaults.BOUNDARY_H * 2,
@@ -37,21 +45,17 @@ local entities = {
     defaults.BOUNDARY_COLOR
   ),
   -- right
-  boundary(
+  b(
     defaults.BOUNDARY_W - defaults.BOUNDARY_H / 2,
     defaults.screen_h / 2,
     defaults.BOUNDARY_H,
     defaults.screen_h - defaults.BOUNDARY_H * 2,
     defaults.STRAIGHT_ANGLE,
     defaults.BOUNDARY_COLOR
-  ),
-  -- player
-  player(
-    defaults.PLAYER_POS_X,
-    defaults.PLAYER_POS_Y,
-    defaults.PLAYER_RADIUS,
-    defaults.PLAYER_COLOR
-  ),
+  )
+}
+
+local text = {
   -- game over text
   game_over(),
   -- score text
@@ -59,7 +63,20 @@ local entities = {
   -- health text
   health(),
   -- pause text
-  pause()
+  pause(),
+	-- powerup count text
+	powerup()
 }
 
-return entities
+local opps = {}
+local health = {}
+local powerups = {}
+
+return {
+  player = player,
+  boundary = boundary,
+  text = text,
+  opps = opps,
+  health = health,
+  powerups = powerups
+}

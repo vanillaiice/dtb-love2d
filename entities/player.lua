@@ -15,10 +15,21 @@ return function(pos_x, pos_y, radius, color)
   entity.fixture = love.physics.newFixture(entity.body, entity.shape)
   entity.fixture:setCategory(3)
 	entity.fixture:setUserData(entity)
+
+	local shield_radius = radius + 50
+
   entity.draw = function(self)
 		local self_x, self_y = self.body:getWorldCenter()
     love.graphics.setColor(colors[color])
-		love.graphics.circle('fill', self_x, self_y, self.shape:getRadius())
+		love.graphics.circle('fill', self_x, self_y, radius)
+		if state.repel then
+			love.graphics.setColor(colors["blue"])
+			love.graphics.circle('line', self_x, self_y, shield_radius)
+		end
+		if state.destroy_around then
+			love.graphics.setColor(colors["red"])
+			love.graphics.circle('line', self_x, self_y, shield_radius)
+		end
   end
 
   local clearance_x_lower = defaults.BOUNDARY_H + 10
@@ -37,7 +48,7 @@ return function(pos_x, pos_y, radius, color)
     end
   end
 
-  entity.begin_contact = function(self, other)
+  entity.begin_contact = function(_, other)
     if other.type == 'opp' then
       sound.effect_collision()
       if state.health == 1 then
@@ -46,6 +57,6 @@ return function(pos_x, pos_y, radius, color)
       state.health = state.health - 1
     end
   end
-  
+
   return entity
 end

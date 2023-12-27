@@ -5,8 +5,11 @@ local state = require('state')
 local smh = require('spawn-man-helpers')
 
 local MAX_OPP_COUNT = 25
+local MAX_HEALTH_COUNT = 4
 local MAX_POWERUP_COUNT = 4
-local SPAWN_INTERVAL_OPP = 0.4
+
+local SPAWN_INTERVAL_OPP = 0.5
+local SPAWN_INTERVAL_HEALTH = 20
 local SPAWN_INTERVAL_POWERUP = 10
 
 local man_opp = function(entities)
@@ -17,6 +20,17 @@ local man_opp = function(entities)
       end
     end,
     SPAWN_INTERVAL_OPP
+  )
+end
+
+local man_health = function(entities)
+  tick.recur(
+    function()
+      if state.health_count < MAX_HEALTH_COUNT then
+        smh.spawn_health(entities)
+      end
+    end,
+    SPAWN_INTERVAL_HEALTH
   )
 end
 
@@ -39,6 +53,7 @@ end
 
 return {
   opp = man_opp,
+	health = man_health,
   powerup = man_powerup,
   dead = man_dead
 }
