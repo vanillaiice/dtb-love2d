@@ -8,7 +8,7 @@ You need git and [Löve2D](https://love2d.org/) installed.
 
 ```sh
 $ git clone https://github.com/vanillaiice/dtb-love2d
-$ cd dtb-love2d
+$ cd dtb-love2d/src
 $ love .
 # or
 $ make
