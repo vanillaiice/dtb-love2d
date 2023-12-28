@@ -5,7 +5,6 @@ local b = require("entities/boundary")
 local p = require("entities/player")
 local game_over = require('entities/text/game-over')
 local score = require('entities/text/score')
-local health = require('entities/text/health')
 local pause = require('entities/text/pause')
 local powerup = require('entities/text/powerup')
 
@@ -60,8 +59,6 @@ local text = {
   game_over(),
   -- score text
   score(),
-  -- health text
-  health(),
   -- pause text
   pause(),
 	-- powerup count text
