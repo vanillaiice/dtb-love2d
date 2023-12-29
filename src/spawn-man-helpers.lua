@@ -18,7 +18,7 @@ end
 
 local random_opp_radius = function()
   return love.math.random(
-    defaults.OPP_RADIUS_MIN, 
+    defaults.OPP_RADIUS_MIN,
     defaults.OPP_RADIUS_MAX
   )
 end
@@ -42,7 +42,7 @@ end
 local random_powerup = function()
   local rtype, rcolor = random_type_and_color()
   local p_x, p_y = love.math.random(50, 450), love.math.random(50, 650)
-  
+
   local p = powerup(
     p_x,
     p_y,

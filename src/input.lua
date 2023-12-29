@@ -55,6 +55,7 @@ local click_functions = {
 	end,
 -- middle click slows down all ops (za worldo)
 	function()
+		sound.effect_slow_motion()
 		if state.powerup_slow_motion_count > 0 then
 			state.powerup_slow_motion_count = state.powerup_slow_motion_count - 1
 			for i=1, #opps do
