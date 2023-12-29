@@ -14,7 +14,7 @@ $ love src
 $ make
 ```
 
-Alternatively, you can download and run the .love files on Linux (you still need to install Löve2D),
+Alternatively, from the releases, you can download and run the .love files on Linux (you still need to install Löve2D),
 and the .exe files on Windows.
 
 # Controls
