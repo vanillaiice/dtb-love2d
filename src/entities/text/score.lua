@@ -5,7 +5,7 @@ local colors = require('colors')
 
 return function()
   local entity = {}
-  
+
   entity.draw = function()
     love.graphics.setColor(colors['white'])
     love.graphics.print(
